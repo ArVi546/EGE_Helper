@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamHelper | Подготовка к ЕГЭ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.4;
+        }
+
+        /* container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e66;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 1.5px solid #cbd5e1;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #1f2a48;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-login:hover {
+            border-color: #2563eb;
+            background: #f0f4ff;
+        }
+
+      .btn-reg {
+            background: #2563eb;
+            color: #fafafa;
+            border: 1.5px solid #cbd5e1;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-reg:hover {
+            border-color: #002ec4;
+            background: #2553eb;
+        }
+
+        /* hero */
+        .hero {
+            padding: 64px 0 48px;
+            background: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto 56px auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #0f172a, #2d3a5e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #334155;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* cards grid — ровно три блока по макету */
+        .cards-section {
+            padding: 40px 0 70px;
+            background: #fafcff;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 28px;
+            flex: 1;
+            min-width: 260px;
+            max-width: 350px;
+            box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eef2ff;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #c7daf5;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 44px;
+            margin-bottom: 24px;
+        }
+
+        .card h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+
+        .card p {
+            color: #334155;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        /* Дополнительная секция с аналитикой и базой/пробниками — для полноты (так как макет упоминает эти элементы) */
+        .info-block {
+            background: #ffffff;
+            padding: 60px 0;
+            border-top: 1px solid #edf2f7;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-text {
+            flex: 1.2;
+        }
+
+        .info-text h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .info-text p {
+            color: #2c3e66;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .feature-list li {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .check-mark {
+            background: #d9efff;
+            color: #2563eb;
+            width: 24px;
+            height: 24px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .info-card {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 32px;
+            padding: 28px;
+            border: 1px solid #e2edff;
+        }
+
+        .stat-item {
+            background: white;
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        /* секция база + пробники (разделённые) */
+        .double-section {
+            padding: 70px 0;
+            background: #fefefe;
+        }
+
+        .double-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .double-card {
+            flex: 1;
+            background: #f9fbfe;
+            border-radius: 32px;
+            padding: 32px 28px;
+            border: 1px solid #e9eff8;
+            transition: 0.2s;
+        }
+
+        .double-card:hover {
+            background: white;
+            border-color: #cbdffc;
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.05);
+        }
+
+        .double-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .double-card p {
+            color: #334155;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 10px;
+        }
+
+        .tag {
+            background: #eef2ff;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+
+        .btn-mock {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-weight: 600;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-mock:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 36px 24px;
+            color: #5b6e8c;
+            font-size: 0.85rem;
+            border-top: 1px solid #eef2f6;
+            background: white;
+        }
+
+        @media (max-width: 800px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="nav">
+            <div class="logo">ExamHelper</div>
+            <div class="nav-links">
+                <button class="btn-login">Вход</button>
+                <button class="btn-reg">Регистрация</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero секция с кратким описанием -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ExamHelper</h1>
+                <p>Сайт для упрощения подготовки к ЕГЭ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основные три блока (точно по макету: аналитика вебинаров, база заданий, готовые пробники) -->
+    <section class="cards-section">
+        <div class="container">
+            <div class="cards-grid">
+                <!-- Аналитика результатов вебинаров -->
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Аналитика вебинаров</h3>
+                    <p>Даёт возможность ведения аналитики результатов вебинаров</p>
+                </div>
+                <!-- База заданий -->
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>База заданий</h3>
+                    <p>Предоставляет базу заданий и готовые пробники</p>
+                </div>
+                <!-- Готовые пробники (отдельно, но в макете единая фраза, однако для ясности третий блок тоже отражает суть) -->
+                <div class="card">
+                    <div class="card-icon">✍️</div>
+                    <h3>Готовые пробники</h3>
+                    <p>Полноценные пробные варианты для эффективной подготовки</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>
